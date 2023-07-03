@@ -43,7 +43,40 @@ def show_all_contacts():
     
 
 def main():
-    
+    while True:
+        command = input("Enter a command: ").lower().split()
+        if command[0] == "hello":
+            print("How can I help you?")
+        elif command[0] == "add":
+            if len(command) >= 3:
+                name = " ".join(command[1:-1])
+                phone = command[-1]
+                print(add_contact(name, phone))
+            else:
+                print("Invalid input. Please provide both name and phone number.")
+        elif command[0] == "change":
+            if len(command) >= 3:
+                name = " ".join(command[1:-1])
+                phone = command[-1]
+                print(change_phone(name, phone))
+            else:
+                print("Invalid input. Please provide both name and phone number.")
+        elif command[0] == "phone":
+            if len(command) >= 2:
+                name = " ".join(command[1:])
+                print(get_phone(name))
+            else:
+                print("Invalid input. Please provide a name.")
+        elif command[0] == "show":
+            if len(command) >= 2 and command[1] == "all":
+                print(show_all_contacts())
+            else:
+                print("Invalid input. Please provide a valid command.")
+        elif command[0] in ["good", "bye", "close", "exit"]:
+            print("Good bye!")
+            break
+        else:
+            print("Invalid command. Please try again.")    
 
 if __name__ == "__main__":
     main()
